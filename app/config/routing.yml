@@ -1,0 +1,4 @@
+ens_jobeet:
+    resource: "@EnsJobeetBundle/Resources/config/routing.yml"
+    prefix:   /
+
