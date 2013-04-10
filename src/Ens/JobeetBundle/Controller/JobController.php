@@ -86,7 +86,8 @@ class JobController extends Controller
 
         return $this->render('EnsJobeetBundle:Job:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 
     /**

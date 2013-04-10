@@ -3,6 +3,7 @@
 namespace Ens\JobeetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ens\JobeetBundle\Utils\Jobeet as Jobeet;
 
 /**
  * Job
@@ -150,6 +151,16 @@ class Job
     {
         return $this->company;
     }
+    
+    /**
+     * Get company slug
+     *
+     * @return string
+     */
+    public function getCompanySlug()
+    {
+        return Jobeet::slugify($this->getCompany());
+    }
 
     /**
      * Set logo
@@ -221,6 +232,16 @@ class Job
     }
 
     /**
+     * Get position slug
+     *
+     * @return string
+     */
+    public function getPositionSlug()
+    {
+        return Jobeet::slugify($this->getPosition());
+    }
+
+    /**
      * Set location
      *
      * @param string $location
@@ -241,6 +262,16 @@ class Job
     public function getLocation()
     {
         return $this->location;
+    }
+
+    /**
+     * Get location slug
+     *
+     * @return string
+     */
+    public function getLocationSlug()
+    {
+        return Jobeet::slugify($this->getLocation());
     }
 
     /**
@@ -416,6 +447,17 @@ class Job
     
         return $this;
     }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        if(!$this->getCreatedAt())
+        {
+            $this->created_at = new \DateTime();
+        }
+    }
 
     /**
      * Get created_at
@@ -438,6 +480,14 @@ class Job
         $this->updated_at = $updatedAt;
     
         return $this;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue()
+    {
+        $this->updated_at = new \DateTime();
     }
 
     /**
@@ -471,24 +521,5 @@ class Job
     public function getCategory()
     {
         return $this->category;
-    }
-    
-    /**
-     * @ORM\PrePersist
-     */
-    public function setCreatedAtValue()
-    {
-        if(!$this->getCreatedAt())
-        {
-            $this->created_at = new \DateTime();
-        }
-    }
-
-    /**
-     * @ORM\PreUpdate
-     */
-    public function setUpdatedAtValue()
-    {
-        $this->updated_at = new \DateTime();
     }
 }
