@@ -1,6 +1,6 @@
-{% extends '::base.html.twig' %}
+{% extends 'EnsJobeetBundle::layout.html.twig' %}
 
-{% block body -%}
+{% block content %}
     <h1>Job edit</h1>
 
     <form action="{{ path('ens_job_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
