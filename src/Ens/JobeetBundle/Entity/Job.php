@@ -472,6 +472,7 @@ class Job
     {
         return $this->category;
     }
+    
     /**
      * @ORM\PrePersist
      */

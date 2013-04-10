@@ -47,6 +47,7 @@ Ens\JobeetBundle\Entity\Job:
       length: 255
     expires_at:
       type: datetime
+      nullable: true
     created_at:
       type: datetime
     updated_at:
