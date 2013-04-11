@@ -3,6 +3,7 @@
 namespace Ens\JobeetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ens\JobeetBundle\Utils\Jobeet as Jobeet;
 
 /**
  * Category
@@ -173,5 +174,35 @@ class Category
     public function __toString()
     {
         return $this->getName();
+    }
+    
+    /**
+     * Get category slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return Jobeet::slugify($this->getName());
+    }
+    
+    /**
+     * Set more jobs !
+     *
+     * @param \Doctrine\Common\Collections\Collection $jobs
+     */
+    public function setMoreJobs($jobs)
+    {
+        $this->more_jobs = $jobs >= 0 ? $jobs : 0;
+    }
+    
+    /**
+     * Get more jobs !
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMoreJobs()
+    {
+        return $this->more_jobs;
     }
 }
