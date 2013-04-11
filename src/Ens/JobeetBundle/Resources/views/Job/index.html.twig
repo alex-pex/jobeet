@@ -15,6 +15,7 @@
                 </div>
                 <h1><a href="{{ path('EnsJobeetBundle_category', { 'slug': category.slug }) }}">{{ category.name }}</a>
             </div>
+            
             <table class="jobs">
                 {% for entity in category.activejobs %}
                     <tr class="{{ cycle(['even', 'odd'], loop.index) }}">
@@ -28,6 +29,7 @@
                     </tr>
                 {% endfor %}
             </table>
+            
             {% if category.morejobs %}
                 <div class="more_jobs">
                     and <a href="{{ path('EnsJobeetBundle_category', { 'slug': category.slug }) }}">{{ category.morejobs }}</a>

@@ -177,16 +177,6 @@ class Category
     }
     
     /**
-     * Get category slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return Jobeet::slugify($this->getName());
-    }
-    
-    /**
      * Set more jobs !
      *
      * @param \Doctrine\Common\Collections\Collection $jobs
@@ -204,5 +194,40 @@ class Category
     public function getMoreJobs()
     {
         return $this->more_jobs;
+    }
+    /**
+     * @var string
+     */
+    private $slug;
+
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Category
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+    /**
+     * @ORM\PrePersist
+     */
+    public function setSlugValue()
+    {
+        $this->slug = Jobeet::slugify($this->getName());
     }
 }
