@@ -30,6 +30,11 @@ class Category
     private $category_affiliates;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $active_jobs;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -69,6 +74,29 @@ class Category
     public function getName()
     {
         return $this->name;
+    }
+    
+    /**
+     * Set active_jobs
+     *
+     * @param  \Doctrine\Common\Collections\Collection $jobs
+     * @return Category
+     */
+    public function setActiveJobs($jobs)
+    {
+        $this->active_jobs = $jobs;
+        
+        return $this;
+    }
+    
+    /**
+     * Get active_jobs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getActiveJobs()
+    {
+        return $this->active_jobs;
     }
 
     /**
