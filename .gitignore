@@ -12,6 +12,9 @@ web/bundles/*
 app/config/parameters.ini
 app/config/parameters.yml
 
+# Temporary files
+*~
+
 # Eclipse SDK
 .buildpath
 .project
