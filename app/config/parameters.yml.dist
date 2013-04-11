@@ -13,3 +13,5 @@ parameters:
 
     locale:            en
     secret:            5e88a131ab090e04b5042d0ba745287c478eab4e
+    
+    max_jobs_on_homepage: 10
