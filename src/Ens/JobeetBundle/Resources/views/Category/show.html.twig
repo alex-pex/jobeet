@@ -17,17 +17,5 @@
         <h1>{{ category.name }}</h1>
     </div>
     
-    <table class="jobs">
-        {% for entity in category.activejobs %}
-            <tr class="{{ cycle(['even', 'odd'], loop.index) }}">
-                <td class="location">{{ entity.location }}</td>
-                <td class="position">
-                    <a href="{{ path('ens_job_show', { 'id': entity.id, 'company': entity.companyslug, 'location': entity.locationslug, 'position': entity.positionslug }) }}">
-                        {{ entity.position }}
-                    </a>
-                </td>
-                <td class="company">{{ entity.company }}</td>
-            </tr>
-        {% endfor %}
-    </table>
+    {% include 'EnsJobeetBundle:Job:list.html.twig' with {'jobs': category.activejobs} %}
 {% endblock %}
