@@ -1,7 +1,7 @@
 # src/Ens/JobeetBundle/Resources/config/routing.yml
 EnsJobeetBundle_category:
-    pattern: /category/{slug}
-    defaults: { _controller: EnsJobeetBundle:Category:show }
+    pattern: /category/{slug}/{page}
+    defaults: { _controller: EnsJobeetBundle:Category:show, page: 1 }
 
 EnsJobeetBundle_job:
     resource: "@EnsJobeetBundle/Resources/config/routing/job.yml"
