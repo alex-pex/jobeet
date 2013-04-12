@@ -94,7 +94,11 @@ class Job
      * @var \Ens\JobeetBundle\Entity\Category
      */
     private $category;
-
+    
+    /**
+     * @var UploadedFile
+     */
+    private $file;
 
     /**
      * Get id
@@ -542,5 +546,83 @@ class Job
     public function getCategory()
     {
         return $this->category;
+    }
+    
+    /**
+     * Set file
+     *
+     * @param UploadedFile $file
+     * @return Job
+     */
+    public function setFile($file) {
+        $this->file = $file;
+    
+        return $this;
+    }
+    
+    /**
+     * Get file
+     *
+     * @return UploadedFile
+     */
+    public function getFile() {
+        return $this->file;
+    }
+    
+    protected function getUploadDir()
+    {
+        return 'uploads/jobs';
+    }
+    public function getWebPath()
+    {
+        return null === $this->logo ? null : $this->getUploadDir().'/'.$this->logo;
+    }
+    
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+    public function getAbsolutePath()
+    {
+        return null === $this->logo ? null : $this->getUploadRootDir().'/'.$this->logo;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            // do whatever you want to generate a unique name
+            $this->logo = uniqid().'.'.$this->file->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist
+     */
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+        
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        
+        $this->file->move($this->getUploadRootDir(), $this->logo);
+        
+        unset($this->file);
+    }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
     }
 }

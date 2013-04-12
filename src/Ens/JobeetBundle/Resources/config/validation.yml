@@ -22,3 +22,5 @@ Ens\JobeetBundle\Entity\Job:
     email:
       - NotBlank: ~
       - Email: ~
+    file:
+      - Image: ~
