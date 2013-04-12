@@ -1,4 +1,5 @@
 # src/Ens/JobeetBundle/Resources/config/routing.yml
+
 EnsJobeetBundle_category:
     pattern: /category/{slug}/{page}
     defaults: { _controller: EnsJobeetBundle:Category:show, page: 1 }
