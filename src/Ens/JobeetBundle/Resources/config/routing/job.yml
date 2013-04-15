@@ -8,6 +8,12 @@ ens_job_show:
     requirements:
         id: \d+
 
+ens_job_preview:
+    pattern: /{company}/{location}/{token}/{position}
+    defaults: { _controller: "EnsJobeetBundle:Job:preview" }
+    requirements:
+        token: \w+
+
 ens_job_new:
     pattern:  /new
     defaults: { _controller: "EnsJobeetBundle:Job:new" }

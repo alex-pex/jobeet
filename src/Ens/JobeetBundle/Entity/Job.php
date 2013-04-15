@@ -459,6 +459,21 @@ class Job
     {
         return $this->expires_at;
     }
+    
+    public function isExpired()
+    {
+        return $this->getDaysBeforeExpires() < 0;
+    }
+    
+    public function expiresSoon()
+    {
+        return $this->getDaysBeforeExpires() < 5;
+    }
+    
+    public function getDaysBeforeExpires()
+    {
+        return ceil(($this->getExpiresAt()->format('U') - time()) / 86400);
+    }
 
     /**
      * Set created_at
