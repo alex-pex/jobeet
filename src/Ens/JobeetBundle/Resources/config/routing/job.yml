@@ -36,3 +36,8 @@ ens_job_delete:
     pattern:  /{token}/delete
     defaults: { _controller: "EnsJobeetBundle:Job:delete" }
     requirements: { _method: post|delete }
+
+ens_job_publish:
+    pattern: /{token}/publish
+    defaults: { _controller: "EnsJobeetBundle:Job:publish" }
+    requirements: { _method: post }

@@ -3,7 +3,12 @@
     <ul>
         {% if not job.isActivated %}
             <li><a href="{{ path('ens_job_edit', { 'token': job.token }) }}">Edit</a></li>
-            <li><a href="{{ path('ens_job_edit', { 'token': job.token }) }}">Publish</a></li>
+            <li>
+                <form action="{{ path('ens_job_publish', { 'token': job.token }) }}" method="post">
+                    {{ form_widget(publish_form) }}
+                    <button type="submit">Publish</button>
+                </form>
+            </li>
         {% endif %}
         <li>
             <form action="{{ path('ens_job_delete', { 'token': job.token }) }}" method="post">

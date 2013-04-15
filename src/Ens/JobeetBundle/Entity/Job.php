@@ -391,6 +391,11 @@ class Job
     
         return $this;
     }
+    
+    public function publish()
+    {
+        $this->setIsActivated(true);
+    }
 
     /**
      * Get is_activated
