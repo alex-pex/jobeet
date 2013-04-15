@@ -23,6 +23,11 @@ ens_job_create:
     defaults: { _controller: "EnsJobeetBundle:Job:create" }
     requirements: { _method: post }
 
+ens_job_extend:
+    pattern: /{token}/extend
+    defaults: { _controller: "EnsJobeetBundle:Job:extend" }
+    requirements: { _method: post }
+
 ens_job_edit:
     pattern:  /{token}/edit
     defaults: { _controller: "EnsJobeetBundle:Job:edit" }
