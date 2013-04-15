@@ -27,6 +27,6 @@ class JobType extends AbstractType
     
     public function getName()
     {
-        return 'ens_jobeetbundle_jobtype';
+        return 'job';
     }
 }
