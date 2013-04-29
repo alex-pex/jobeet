@@ -1,5 +1,12 @@
 # src/Ens/JobeetBundle/Resources/config/routing.yml
 
+login:
+    pattern: /login
+    defaults: { _controller: EnsJobeetBundle:Default:login }
+
+login_check:
+    pattern: /login_check
+
 EnsJobeetBundle_category:
     pattern: /category/{slug}/{page}
     defaults: { _controller: EnsJobeetBundle:Category:show, page: 1 }
