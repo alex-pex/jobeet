@@ -43,7 +43,20 @@
           </div>
         </div>
       </div>
- 
+      
+      {% if app.session.get('job_history') %}
+        <div id="job_history">
+          Recently viewed jobs:
+          <ul>
+            {% for job in app.session.get('job_history') %}
+            <li>
+              <a href="{{ path('ens_job_show', { 'id': job.id, 'company': job.companyslug, 'location': job.locationslug, 'position': job.positionslug }) }}">{{ job.position }} - {{ job.company }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
       <div id="content">
         {% for type, flashMessages in app.session.flashbag.all() %}
           {% for flashMessage in flashMessages %}
