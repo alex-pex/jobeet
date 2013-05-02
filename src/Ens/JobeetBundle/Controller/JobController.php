@@ -107,8 +107,10 @@ class JobController extends Controller
             $category->setActiveJobs($em->getRepository('EnsJobeetBundle:Job')->getActiveJobs($category->getId(), $this->container->getParameter('max_jobs_on_homepage')));
             $category->setMoreJobs($em->getRepository('EnsJobeetBundle:Job')->countActiveJobs($category->getId()) - $this->container->getParameter('max_jobs_on_homepage'));
         }
-
-        return $this->render('EnsJobeetBundle:Job:index.html.twig', array(
+        
+        $format = $this->getRequest()->getRequestFormat();
+        
+        return $this->render('EnsJobeetBundle:Job:index.'.$format.'.twig', array(
             'categories' => $categories
         ));
     }
